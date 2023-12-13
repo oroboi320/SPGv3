@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="style.css">
+<script src="script.js"></script>
+    <title>Oroboi Swertres Probables Generator v3.0</title>
+</head>
+<body><center>
+    <h1>Oroboi Swertres Probables Generator v3.0</h1>
+    
+    <form id="numberForm">
+        <label for="inputNumber">Enter previous result:</label>
+        <input type="text" id="inputNumber" maxlength="3" pattern="[0-9]{3}" title="Please enter a valid 3-digit number" required>
+        <button type="button" onclick="generateCombinations()">Generate Probables</button>
+    </form>
+
+    <div id="generatedCombinations"></div>
+
+    <label for="filterBox">Filter by digits:</label>
+    <input type="text" id="filterBox" pattern="[0-9]*" title="Only digits allowed">
+    <button type="button" onclick="filterCombinations()">Filter</button>
+
+    </center>
+</body>
+</html>

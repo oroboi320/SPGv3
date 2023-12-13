@@ -1,0 +1,19 @@
+  #generatedCombinations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 100%; /* Ensure the container does not exceed the window width */
+            justify-content: center; /* Center the combinations horizontally */
+        }
+
+        .combination {
+            border: 1px solid red;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            max-width: 150px; /* Set a maximum width for each combination */
+        }
+
+        #filterBox {
+            margin-top: 10px;
+        }
