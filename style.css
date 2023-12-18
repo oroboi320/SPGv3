@@ -7,11 +7,18 @@
         }
 
         .combination {
-            border: 1px solid red;
+         background: #FF4A00;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;   
+border: 1px solid red;
             padding: 10px;
             margin: 5px;
             text-align: center;
-            max-width: 150px; /* Set a maximum width for each combination */
+            max-width: 150px; /* Set a maximum width for each combination 
+
+*/
         }
 
         #filterBox {
