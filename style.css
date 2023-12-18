@@ -4,6 +4,13 @@
             gap: 10px;
             max-width: 100%; /* Ensure the container does not exceed the window width */
             justify-content: center; /* Center the combinations horizontally */
+     background: #FF7A59;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
         }
 
         .combination {
