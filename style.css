@@ -10,7 +10,7 @@
 
         .combination {
             border: 1px solid red;
-            border-radius: 50;
+            border-radius: 50%;
             padding: 10px;
             margin: 5px;
             text-align: center;
