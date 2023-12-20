@@ -2,9 +2,8 @@ Oroboi - Swertres Probables Generator
 A 3 digit number generator for your daily swertres life.
 It will generate automatically some probables with the help of your input for daily swertres life.
 
-[b][size=50][color=red]How to use:[/color][/size][/b]
+How to use:
 
-[size=25]
 1. Enter a previous result of your choice.
 2. Click Generate Probables.
 >>>> Probables will be generated <<<<<
@@ -15,4 +14,4 @@ It will generate automatically some probables with the help of your input for da
    -3. Click filter.
 >>> Filtered Combinations will be generated <<<
 
->>> Pick your lucky digit <<<[/size]
+>>> Pick your lucky digit <<<
