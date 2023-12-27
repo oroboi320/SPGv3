@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="style.css">
+<script src="script.js"></script>
+    <title>Oroboi Swertres Probables Generator v3.0</title>
+</head>
+<body><center>
+    <img src="./images/SPG2.png" width="25%" height="25%" alt="SPG-Logo">
+    
+    <form id="numberForm">
+        <label for="inputNumber">Enter previous result:</label>
+        <input type="text" id="inputNumber" maxlength="3" pattern="[0-9]{3}" title="Please enter a valid 3-digit number" required>
+        <button type="button" onclick="generateCombinations()">Generate Probables</button>
+    </form>
+
+    <div id="generatedCombinations"></div>
+
+    <label for="filterBox">Filter by digits:</label>
+    <input type="text" id="filterBox" pattern="[0-9]*" title="Only digits allowed">
+    <button type="button" onclick="filterCombinations()">Filter</button>
+    <h4>If you wish to donate via GCash:</h4> <br/><center><img src="./images/spGcash.jpg" width="50% "height="50%" /><br/></center>
+1. Open your GCash mobile app.<br/>
+2.  Choose 'Pay QR'.<br/>
+3. Choose 'Scan QR' and scan the code above. <br/>
+4. Input the amount of donation.<br/>
+<h4>Designed by: Oroboi</h4>
+    </center>
+</body>
+</html>
