@@ -2,228 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <style>
- #generatedCombinations {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            max-width: 100%; /* Ensure the container does not exceed the window width */
-            justify-content: center; /* Center the combinations horizontally */
-        }
-
-        .combination {
-         background: #FF4A00;
-color: #FFFFFF;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;   
-border: 1px solid red;
-            padding: 10px;
-            margin: 5px;
-            text-align: center;
-            max-width: 150px; /* Set a maximum width for each combination */
-        }
-
-        #filterBox {
-            margin-top: 10px;
-        }
-</style>
-<script>
-        var allCombinations = [];
-
-     function applyRules(digit) {
-            switch (digit) {
-                case '0':
-                    return ['1', '4', '0', '9'];
-                case '1':
-                    return ['0', '4', '1', '2',];
-                case '2':
-                    return ['5', '7', '1', '3', '2'];
-                case '3':
-                    return ['5', '8', '3', '2', '4'];
-                case '4':
-                    return ['7', '9', '4', '5', '3', '0', '1'];
-                case '5':
-                    return ['2', '3', '5', '4', '6'];
-                case '6':
-                    return ['9', '6', '5', '7'];
-                case '7':
-                    return ['2', '4', '7', '6', '8'];
-                case '8':
-                    return ['3', '8', '7', '9'];
-                case '9':
-                    return ['6', '9', '0', '8', '4'];
-                default:
-                    return [digit];
-            }
-        }
-
-        function generateCombinationsHelper(inputNumber, index, currentCombination, result) {
-            if (index === inputNumber.length) {
-                result.push(currentCombination);
-                return;
-            }
-
-            var possibleValues = applyRules(inputNumber[index]);
-            for (var i = 0; i < possibleValues.length; i++) {
-                generateCombinationsHelper(inputNumber, index + 1, currentCombination + possibleValues[i], result);
-            }
-        }
-
-        function generateCombinations() {
-            var inputNumber = document.getElementById("inputNumber").value;
-
-            if (inputNumber.length === 3 && !isNaN(inputNumber)) {
-                allCombinations = [];
-                generateCombinationsHelper(inputNumber, 0, '', allCombinations);
-
-                displayCombinations(allCombinations);
-            } else {
-                alert("Please enter a valid 3-digit number.");
-            }
-        }
-function filterCombinations2() {
-    var filterValue = document.getElementById("filterBox2").value.toUpperCase();
-
-    if (/^[EO]{3}$/.test(filterValue)) {
-        if (filterValue.length === 3) {
-            var filteredCombinations2 = allCombinations.filter(function(combination) {
-                var oddCount = 0;
-                var evenCount = 0;
-
-                for (var i = 0; i < 3; i++) {
-                    var digit = combination[i];
-
-                    if (['0', '2', '4', '6', '8'].includes(digit)) {
-                        evenCount++;
-                    } else if (['1', '3', '5', '7', '9'].includes(digit)) {
-                        oddCount++;
-                    }
-                }
-
-                return oddCount === filterValue.split('O').length - 1 &&
-                       evenCount === filterValue.split('E').length - 1;
-            });
-
-            displayCombinations(filteredCombinations2);
-        } else {
-            // If the filter box is empty or doesn't have exactly 3 characters, display all combinations
-            displayCombinations(allCombinations);
-        }
-    } else {
-        alert("Please enter a valid 3-digit format using 'E' and/or 'O' in the filter box.");
-    }
-}
-        function filterCombinations() {
-            var filterValue = document.getElementById("filterBox").value;
-
-            if (/^[0-9]*$/.test(filterValue)) {
-                if (filterValue.length > 0) {
-                    var filteredCombinations = allCombinations.filter(function(combination) {
-                        for (var i = 0; i < filterValue.length; i++) {
-                            if (!combination.includes(filterValue[i])) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    });
-                    displayCombinations(filteredCombinations);
-                } else {
-                    // If the filter box is empty, display all combinations
-                    displayCombinations(allCombinations);
-                }
-            } else {
-                alert("Please enter only digits in the filter box.");
-            }
-        }
-
-        function displayCombinations(combinations) {
-            var generatedCombinationsElement = document.getElementById("generatedCombinations");
-            generatedCombinationsElement.innerHTML = ""; // Clear previous results
-
-            for (var i = 0; i < combinations.length; i++) {
-                var combinationElement = document.createElement("div");
-                combinationElement.classList.add("combination");
-                combinationElement.textContent = combinations[i];
-                generatedCombinationsElement.appendChild(combinationElement);
-            }
-        }
-function filterCombinations3() {
-    var filterValue = document.getElementById("filterBox3").value.toUpperCase();
-
-    if (/^[HL]{3}$/.test(filterValue)) {
-        if (filterValue.length === 3) {
-            var filteredCombinations3 = allCombinations.filter(function(combination) {
-                var highCount = 0;
-                var lowCount = 0;
-
-                for (var i = 0; i < 3; i++) {
-                    var digit = combination[i];
-
-                    if (['5', '6', '7', '8', '9'].includes(digit)) {
-                        highCount++;
-                    } else if (['0', '1', '2', '3', '4'].includes(digit)) {
-                        lowCount++;
-                    }
-                }
-
-                return highCount === filterValue.split('H').length - 1 &&
-                       lowCount === filterValue.split('L').length - 1;
-            });
-
-            displayCombinations(filteredCombinations3);
-        } else {
-            // If the filter box is empty or doesn't have exactly 3 characters, display all combinations
-            displayCombinations(allCombinations);
-        }
-    } else {
-        alert("Please enter a valid 3-digit format using 'H' and/or 'L' in the filter box.");
-    }
-}
-function chooseLuckyCombination() {
-        // Check if there are generated combinations
-        if (allCombinations.length > 0) {
-            // Randomly choose a combination
-            var randomIndex = Math.floor(Math.random() * allCombinations.length);
-            var luckyCombination = allCombinations[randomIndex];
-
-            // Display the lucky combination
-            alert("Your Lucky Combination is: " + luckyCombination);
-        } else {
-            alert("Generate probables first before choosing a lucky combination.");
-        }
-    }
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Oroboi Swertres Probables Generator v3.0</title>
 </head>
 <body><center>
-    <h1>SPG version 3.0</h1>
-  <p>Swertres Probables Generator is a tool where it generates automatic swertres probables at the expense of your choice of previous result of Swertres Lotto with the use of algorithm which analyze and do the math for you. It will increase your chances of winning the Swertres Lotto draw. It can be used also as a reference to your so called Swertres Hearing from Swertres Masters <br/> Good Luck!</p>
+    <h1>Swertres Probables Generator</h1>
+  <p>Swertres Probables Generator is a tool where it generates automatic swertres probables at the expense of your choice of previous result of Swertres Lotto. Algorithm used which analyze and do the math for you will increase your chances of winning the Swertres Lotto draw. It can be used also as a reference to your so called Swertres Hearing from Swertres Masters <br/> Good Luck!</p>
     
-    <form id="numberForm">
-        <label for="inputNumber">Enter previous result:</label>
-        <input type="text" id="inputNumber" maxlength="3" pattern="[0-9]{3}" title="Please enter a valid 3-digit number" required>
-        <button type="button" onclick="generateCombinations()">Generate Probables</button>
-    </form>
+    <form class="css-form" id="numberForm">
+        <label for="inputNumber"></label>
+        <input class="my-textbox" type="text" id="inputNumber" maxlength="3" pattern="[0-9]{3}" title="Please enter previous result of your choice" required value="Enter previous result">
+       <button class="my-button" type="button" onclick="generateCombinations()">GO</button>
+    </form><br/><br/>
 
     <div id="generatedCombinations"></div>
 
-    <label for="filterBox">Filter by digits:</label>
-    <input type="text" id="filterBox" pattern="[0-9]*" title="Only digits allowed">
-    <button type="button" onclick="filterCombinations()">Filter</button>
-<br/>&nbsp;
- <label for="filterBox2">Filter by Odd/Even:</label>
-    <input type="text" id="filterBox2" pattern="[E-O]*" title="Only E-O allowed">
-    <button type="button" onclick="filterCombinations2()">Filter</button>
-  <br/>&nbsp;
-<label for="filterBox3">Filter by High/Low:</label>
-<input type="text" id="filterBox3" pattern="[HL]*" title="Only H-L allowed">
-<button type="button" onclick="filterCombinations3()">Filter</button>
- <p>Filter by Digits could be 1 Digit Number or Pairs.</p>
-  <p>Filter by ODD/EVEN: Where ODD = 1,3,5,7,9. <br/> EVEN = 0,2,4,6,8.</p>
-    <p>Filter by High/Low: Where Low = 0,1,2,3,4.<br/>High = 5,6,7,8,9.</p><br/><br/>
-<button type="button" onclick="chooseLuckyCombination()">Pick for me!</button>
+    <br/><br/><label for="filterBox"></label>
+    <input class="my-textbox" type="text" id="filterBox" pattern="[0-9]*" title="Filter by digits" value="Filter by digits:">
+    <button class="my-button2" type="button" onclick="filterCombinations()">GO</button>
+<br/><br/><label for="filterBox2"></label>
+    <input class="my-textbox" type="text" id="filterBox2" pattern="[E-O]*" title="Only E and O allowed" value="Filter by Odd/Even:">
+    <button class="my-button3" type="button" onclick="filterCombinations2()">GO</button>
+
+<br/><br/><label for="filterBox3"></label>
+<input class="my-textbox" type="text" id="filterBox3" pattern="[HL]*" title="Only H and L allowed" value="Filter by High/Low:">
+<button class="my-button4" type="button" onclick="filterCombinations3()">GO</button><br/><br/><br/><br/>
+<button class="my-button5" type="button" onclick="chooseLuckyCombination()">Show me my lucky number!</button>
   
   
     </center>
