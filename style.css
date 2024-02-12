@@ -4,6 +4,7 @@
 footer{
 position: relative;
 height: 300px;
+    margin-left: 50%;
 }
 p.copyright {
 text-align: center;
