@@ -2,8 +2,8 @@
     color:#f8052d;
 }
 footer{
-position: relative;
 height: 300px;
+    align:center;
 }
 p.copyright {
 position: absolute;
